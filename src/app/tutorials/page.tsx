@@ -10,7 +10,7 @@ export const metadata: Metadata = {
 
 export default function TutorialsPage() {
   return (
-    <div className="mx-auto max-w-[1400px] px-4 py-14 sm:px-6 lg:px-8">
+    <div className="mx-auto max-w-[1400px] px-4 py-14 sm:px-8 lg:px-12 xl:px-16">
       <div className="max-w-2xl">
         <h1 className="text-3xl font-bold tracking-tight text-foreground sm:text-4xl">
           Tutorials

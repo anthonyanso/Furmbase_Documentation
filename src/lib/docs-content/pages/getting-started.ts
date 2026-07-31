@@ -13,7 +13,7 @@ export const gettingStarted: DocPage = {
     ),
     h2("create-your-workspace", "Create your workspace"),
     p(
-      "Every Furmbase account starts with a workspace. A workspace holds your forms, responses, team members, and billing settings. You can belong to multiple workspaces — for example, one for your company and one for a side project."
+      "Every Furmbase account starts with a workspace. A workspace holds your forms, responses, and billing settings. You can belong to multiple workspaces — for example, one for a client project and one for a side project."
     ),
     steps([
       {
@@ -22,13 +22,7 @@ export const gettingStarted: DocPage = {
       },
       {
         title: "Name your workspace",
-        content:
-          "Choose a workspace name your team will recognize, such as your company or product name.",
-      },
-      {
-        title: "Invite your team (optional)",
-        content:
-          "Add teammates now or later from Settings → Team. See Team Collaboration for role details.",
+        content: "Choose a workspace name you'll recognize, such as your product or project name.",
       },
     ]),
     h2("the-dashboard", "The dashboard"),
@@ -37,15 +31,14 @@ export const gettingStarted: DocPage = {
     ),
     list([
       "Forms — every form in the workspace, sorted by last edited",
-      "Templates — starting points for common use cases like surveys, intake forms, and order forms",
       "Responses — a unified inbox across all your forms",
       "Settings — workspace, billing, domains, and integrations",
     ]),
     h2("create-your-first-form", "Create your first form"),
-    p("You can start from a blank form, a template, or generate one with AI."),
-    h3("blank-or-template", "Blank form or template"),
+    p("You can start from a blank form or generate one with AI."),
+    h3("starting-from-blank", "Starting from a blank form"),
     p(
-      "Click New Form from the dashboard, then choose Blank Form or pick a template from the gallery. Templates come pre-filled with question types and logic you can edit freely."
+      "Click New Form from the dashboard to open a blank canvas in the Form Builder, ready for you to start adding questions."
     ),
     h3("with-ai", "Or generate one with AI"),
     p(

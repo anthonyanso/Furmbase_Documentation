@@ -3,7 +3,7 @@
 import * as React from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { Search, BookOpen, Code2 } from "lucide-react";
+import { Search, Library, Code2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 export function Hero() {
@@ -58,7 +58,7 @@ export function Hero() {
         <div className="mt-6 flex flex-wrap items-center justify-center gap-3 animate-fade-up [animation-delay:320ms] opacity-0">
           <Button size="lg" asChild>
             <Link href="/docs/getting-started">
-              <BookOpen />
+              <Library />
               Browse Documentation
             </Link>
           </Button>

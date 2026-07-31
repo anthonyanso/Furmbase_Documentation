@@ -8,13 +8,8 @@ import { Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { DOCS_NAV } from "@/lib/docs-config";
+import { SECTION_NAV } from "@/lib/section-nav";
 import { cn } from "@/lib/utils";
-
-const TOP_LINKS = [
-  { title: "Documentation", href: "/docs/getting-started" },
-  { title: "Tutorials", href: "/tutorials" },
-  { title: "Developer Docs", href: "/developers" },
-];
 
 export function MobileNav() {
   const [open, setOpen] = React.useState(false);
@@ -67,25 +62,29 @@ export function MobileNav() {
 
             <nav className="p-4 space-y-6">
               <div className="space-y-1">
-                {TOP_LINKS.map((link) => (
-                  <Link
-                    key={link.href}
-                    href={link.href}
-                    className="block rounded-lg px-3 py-2 text-sm font-medium text-foreground hover:bg-accent hover:text-accent-foreground"
-                  >
-                    {link.title}
-                  </Link>
-                ))}
+                {SECTION_NAV.map((link) => {
+                  const Icon = link.icon;
+                  return (
+                    <Link
+                      key={link.href}
+                      href={link.href}
+                      className="flex items-center gap-2.5 rounded-lg px-3 py-2 text-sm font-medium text-foreground hover:bg-accent hover:text-accent-foreground"
+                    >
+                      <Icon className="size-4 text-muted-foreground" />
+                      {link.title}
+                    </Link>
+                  );
+                })}
               </div>
 
               <div className="h-px bg-border" />
 
-              {DOCS_NAV.map((group) => (
-                <div key={group.title}>
-                  <p className="px-3 text-xs font-semibold uppercase tracking-wide text-muted-foreground">
+              {DOCS_NAV.map((group, i) => (
+                <div key={group.title} className={cn(i > 0 && "mt-6 border-t border-border pt-6")}>
+                  <p className="px-3 text-sm text-muted-foreground">
                     {group.title}
                   </p>
-                  <div className="mt-1 space-y-0.5">
+                  <div className="mt-2 space-y-0.5">
                     {group.items.map((item) => {
                       const isActive = pathname === item.href;
                       return (

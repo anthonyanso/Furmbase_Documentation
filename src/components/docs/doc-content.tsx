@@ -104,6 +104,41 @@ export function DocContent({ blocks }: { blocks: DocBlock[] }) {
               </div>
             );
 
+          case "image":
+            return (
+              <figure key={i} className="my-6">
+                <img
+                  src={block.src}
+                  alt={block.alt}
+                  loading="lazy"
+                  className="w-full rounded-xl border border-border"
+                />
+                {block.caption && (
+                  <figcaption className="mt-2 text-center text-sm text-muted-foreground">
+                    {block.caption}
+                  </figcaption>
+                )}
+              </figure>
+            );
+
+          case "video":
+            return (
+              <figure key={i} className="my-6">
+                <video
+                  src={block.src}
+                  poster={block.poster}
+                  controls
+                  playsInline
+                  className="w-full rounded-xl border border-border bg-black"
+                />
+                {block.caption && (
+                  <figcaption className="mt-2 text-center text-sm text-muted-foreground">
+                    {block.caption}
+                  </figcaption>
+                )}
+              </figure>
+            );
+
           default:
             return null;
         }

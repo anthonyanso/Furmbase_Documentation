@@ -12,18 +12,14 @@ export function Logo({ className }: { className?: string }) {
       )}
     >
       <Image
-        src="/furmbase-logo.png"
+        src="https://ik.imagekit.io/zzqgwdyat/Furmbase%20Logo/Furmbase_logo?updatedAt=1778245548231"
         alt="Furmbase"
         width={26}
         height={26}
-        className="rounded-md"
         priority
       />
       <span className="text-[15px] font-semibold tracking-tight text-foreground">
         Furmbase
-      </span>
-      <span className="hidden sm:inline rounded-md border border-border px-1.5 py-0.5 text-[10px] font-medium text-muted-foreground">
-        Docs
       </span>
     </Link>
   );

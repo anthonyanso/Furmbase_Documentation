@@ -25,7 +25,9 @@ export type DocBlock =
     }
   | { type: "code"; title?: string; language: string; code: string }
   | { type: "steps"; items: { title: string; content: string }[] }
-  | { type: "table"; headers: string[]; rows: string[][] };
+  | { type: "table"; headers: string[]; rows: string[][] }
+  | { type: "image"; src: string; alt: string; caption?: string }
+  | { type: "video"; src: string; poster?: string; caption?: string };
 
 export interface DocPage {
   slug: string;
@@ -57,6 +59,16 @@ export interface TutorialItem {
   duration: string;
   level: "Beginner" | "Intermediate" | "Advanced";
   category: string;
+}
+
+export interface BlogPost {
+  slug: string;
+  title: string;
+  excerpt: string;
+  category: string;
+  date: string;
+  readTime: string;
+  blocks: DocBlock[];
 }
 
 export interface SearchDoc {

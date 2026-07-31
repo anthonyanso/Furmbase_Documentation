@@ -15,7 +15,7 @@ export const automation: DocPage = {
     h2("what-to-expect", "What to expect"),
     list([
       "Trigger workflows on events like a new response, a specific answer, or a failed payment",
-      "Chain multiple actions together — for example, tag a response, notify a teammate, and send a follow-up email",
+      "Chain multiple actions together — for example, tag a response, send a Slack notification, and send a follow-up email",
       "Conditional branches based on respondent answers",
       "A visual builder for composing workflows, similar in spirit to the Form Builder",
     ]),

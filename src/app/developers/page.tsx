@@ -5,7 +5,9 @@ import { Breadcrumbs } from "@/components/docs/breadcrumbs";
 import { CodeBlock } from "@/components/docs/code-block";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
+import { SidebarSectionSwitcher } from "@/components/docs/sidebar-nav-switcher";
 import { DEVELOPER_NAV_GROUPS, DEVELOPER_SECTIONS } from "@/lib/developer-sections";
+import { cn } from "@/lib/utils";
 
 export const metadata: Metadata = {
   title: "Developer Documentation",
@@ -16,15 +18,17 @@ export const metadata: Metadata = {
 export default function DevelopersPage() {
   return (
     <div className="mx-auto flex max-w-[1400px]">
-      <aside className="hidden lg:block w-64 shrink-0 border-r border-sidebar-border bg-sidebar">
-        <div className="sticky top-16 max-h-[calc(100vh-4rem)] overflow-y-auto px-4 py-8">
-          <nav className="space-y-6">
-            {DEVELOPER_NAV_GROUPS.map((group) => (
-              <div key={group.title}>
-                <p className="px-3 text-xs font-semibold uppercase tracking-wide text-muted-foreground">
+      <aside className="hidden lg:block w-72 shrink-0 border-r border-sidebar-border bg-sidebar">
+        <div className="sticky top-16 max-h-[calc(100vh-4rem)] overflow-y-auto py-6 pl-4 pr-4 sm:pl-8 lg:pl-12 xl:pl-16">
+          <SidebarSectionSwitcher />
+          <div className="my-5 h-px bg-sidebar-border" />
+          <nav>
+            {DEVELOPER_NAV_GROUPS.map((group, i) => (
+              <div key={group.title} className={cn(i > 0 && "mt-6 border-t border-sidebar-border pt-6")}>
+                <p className="px-3 text-sm text-muted-foreground">
                   {group.title}
                 </p>
-                <div className="mt-1.5 space-y-0.5">
+                <div className="mt-2 space-y-0.5">
                   {group.items.map((item) => (
                     <span
                       key={item}
@@ -43,7 +47,7 @@ export default function DevelopersPage() {
         </div>
       </aside>
 
-      <main id="main-content" className="min-w-0 flex-1 px-4 py-10 sm:px-6 lg:px-10">
+      <main id="main-content" className="min-w-0 flex-1 px-4 py-10 sm:px-8 lg:px-12 xl:px-16">
         <Breadcrumbs items={[{ title: "Developer Documentation" }]} />
 
         <div className="mt-6 flex items-center gap-3">

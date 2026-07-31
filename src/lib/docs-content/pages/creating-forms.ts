@@ -27,7 +27,7 @@ export const creatingForms: DocPage = {
     ),
     h2("starting-a-new-form", "Starting a new form"),
     p(
-      "From the dashboard, click New Form. You'll be asked to choose a starting point: Blank, Template, or AI Form Generator. Every form is autosaved as you edit — there is no separate save button."
+      "From the dashboard, click New Form. You'll be asked to choose a starting point: Blank or AI Form Generator. Every form is autosaved as you edit — there is no separate save button."
     ),
     h2("organizing-with-sections", "Organizing with sections"),
     p(
@@ -36,13 +36,13 @@ export const creatingForms: DocPage = {
     code(
       "text",
       `Form: Client Onboarding
-├─ Section: Company Details
-│   ├─ Company name
-│   └─ Company size
+├─ Section: Your Details
+│   ├─ Full name
+│   └─ Email address
 ├─ Section: Project Scope
 │   ├─ Project description
 │   └─ Estimated budget
-└─ Section: Contact
+└─ Section: Contact Preferences
     └─ Best way to reach you`,
       "Example form structure"
     ),
@@ -57,9 +57,9 @@ export const creatingForms: DocPage = {
     note(
       "Renaming a form does not change its shareable link. To change the link itself, edit the form slug under Settings → General."
     ),
-    h2("duplicating-and-templates", "Duplicating forms and saving templates"),
+    h2("duplicating-a-form", "Duplicating a form"),
     p(
-      "Any form can be duplicated from the dashboard's ⋯ menu — useful for running the same form across multiple events or clients. You can also save a form as a private template for your workspace to reuse later."
+      "Any form can be duplicated from the dashboard's ⋯ menu — useful for running the same form across multiple events or clients without rebuilding it from scratch."
     ),
   ],
 };

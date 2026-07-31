@@ -52,7 +52,7 @@ export const integrations: DocPage = {
     list([
       "Choose which channel receives new-response notifications",
       "Optionally include a summary of specific answers directly in the Slack message",
-      "Mention a teammate automatically when a specific answer matches a condition (e.g. a high-priority support request)",
+      "Mention a specific person automatically when a specific answer matches a condition (e.g. a high-priority support request)",
     ]),
     h2("managing-integrations", "Managing integrations"),
     p(

@@ -2,7 +2,7 @@ import Link from "next/link";
 import { Hero } from "@/components/home/hero";
 import { FeatureCards } from "@/components/home/feature-cards";
 import { Button } from "@/components/ui/button";
-import { BookOpen, GraduationCap } from "lucide-react";
+import { Library, GraduationCap } from "lucide-react";
 
 export default function HomePage() {
   return (
@@ -11,7 +11,7 @@ export default function HomePage() {
       <FeatureCards />
 
       <section className="border-t border-border bg-muted/30">
-        <div className="mx-auto max-w-[1400px] px-4 py-16 sm:px-6 lg:px-8">
+        <div className="mx-auto max-w-[1400px] px-4 py-16 sm:px-8 lg:px-12 xl:px-16">
           <div className="flex flex-col items-center justify-between gap-6 rounded-2xl border border-border bg-card px-6 py-10 text-center sm:flex-row sm:text-left">
             <div>
               <h2 className="text-xl font-semibold text-foreground">
@@ -25,7 +25,7 @@ export default function HomePage() {
             <div className="flex shrink-0 gap-3">
               <Button variant="secondary" asChild>
                 <Link href="/docs/getting-started">
-                  <BookOpen />
+                  <Library />
                   Read the docs
                 </Link>
               </Button>

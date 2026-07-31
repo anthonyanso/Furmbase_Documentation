@@ -2,7 +2,7 @@ import type { NavGroup } from "@/types/docs";
 
 export const DOCS_NAV: NavGroup[] = [
   {
-    title: "Getting Started",
+    title: "Intro",
     items: [{ title: "Getting Started", href: "/docs/getting-started" }],
   },
   {
@@ -28,10 +28,6 @@ export const DOCS_NAV: NavGroup[] = [
       { title: "Themes & Branding", href: "/docs/themes-branding" },
       { title: "Custom Domains", href: "/docs/custom-domains" },
     ],
-  },
-  {
-    title: "Collaboration",
-    items: [{ title: "Team Collaboration", href: "/docs/team-collaboration" }],
   },
   {
     title: "Data & Exports",
@@ -68,7 +64,6 @@ export const DOCS_ORDER: string[] = [
   "analytics",
   "themes-branding",
   "custom-domains",
-  "team-collaboration",
   "google-sheets",
   "export-responses",
   "integrations",

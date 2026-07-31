@@ -42,7 +42,7 @@ export default async function TutorialPage({
   ).slice(0, 3);
 
   return (
-    <div className="mx-auto max-w-3xl px-4 py-10 sm:px-6 lg:px-8">
+    <div className="mx-auto max-w-3xl px-4 py-10 sm:px-8 lg:px-8">
       <Breadcrumbs
         items={[
           { title: "Tutorials", href: "/tutorials" },

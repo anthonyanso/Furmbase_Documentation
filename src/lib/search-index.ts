@@ -1,6 +1,7 @@
 import type { SearchDoc } from "@/types/docs";
 import { DOCS_PAGES } from "@/lib/docs-content";
 import { TUTORIALS } from "@/lib/tutorials-data";
+import { BLOG_POSTS } from "@/lib/blog-data";
 
 function buildDocsIndex(): SearchDoc[] {
   return Object.values(DOCS_PAGES).map((page) => ({
@@ -20,6 +21,15 @@ function buildTutorialsIndex(): SearchDoc[] {
   }));
 }
 
+function buildBlogIndex(): SearchDoc[] {
+  return BLOG_POSTS.map((post) => ({
+    title: post.title,
+    description: post.excerpt,
+    href: `/blog/${post.slug}`,
+    group: `Blog · ${post.category}`,
+  }));
+}
+
 const STATIC_PAGES: SearchDoc[] = [
   {
     title: "Tutorials",
@@ -34,11 +44,18 @@ const STATIC_PAGES: SearchDoc[] = [
     group: "Resources",
     keywords: ["api", "sdk", "webhook", "developer"],
   },
+  {
+    title: "Blog",
+    description: "Product updates, guides, and behind-the-scenes posts from the Furmbase team.",
+    href: "/blog",
+    group: "Resources",
+  },
 ];
 
 export const SEARCH_INDEX: SearchDoc[] = [
   ...buildDocsIndex(),
   ...buildTutorialsIndex(),
+  ...buildBlogIndex(),
   ...STATIC_PAGES,
 ];
 

@@ -11,7 +11,6 @@ import { responses } from "./pages/responses";
 import { analytics } from "./pages/analytics";
 import { themesBranding } from "./pages/themes-branding";
 import { customDomains } from "./pages/custom-domains";
-import { teamCollaboration } from "./pages/team-collaboration";
 import { googleSheets } from "./pages/google-sheets";
 import { exportResponses } from "./pages/export-responses";
 import { integrations } from "./pages/integrations";
@@ -30,7 +29,6 @@ const ALL_PAGES: DocPage[] = [
   analytics,
   themesBranding,
   customDomains,
-  teamCollaboration,
   googleSheets,
   exportResponses,
   integrations,

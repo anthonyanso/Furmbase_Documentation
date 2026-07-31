@@ -13,8 +13,8 @@ import { cn } from "@/lib/utils";
 
 const NAV_LINKS = [
   { title: "Documentation", href: "/docs/getting-started", match: "/docs" },
-  { title: "Tutorials", href: "/tutorials", match: "/tutorials" },
   { title: "Developer Docs", href: "/developers", match: "/developers" },
+  { title: "Blog", href: "/blog", match: "/blog" },
 ];
 
 export function SiteHeader() {
@@ -28,7 +28,7 @@ export function SiteHeader() {
 
   return (
     <header className="sticky top-0 z-50 w-full border-b border-border bg-background/85 backdrop-blur-md">
-      <div className="mx-auto flex h-16 max-w-[1400px] items-center gap-4 px-4 sm:px-6 lg:px-8">
+      <div className="mx-auto flex h-16 max-w-[1400px] items-center gap-4 px-4 sm:px-8 lg:px-12 xl:px-16">
         <MobileNav />
         <Logo />
 

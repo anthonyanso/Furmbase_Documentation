@@ -1,14 +1,16 @@
 import type { MetadataRoute } from "next";
 import { getAllDocSlugs } from "@/lib/docs-content";
 import { TUTORIALS } from "@/lib/tutorials-data";
+import { getBlogPosts } from "@/lib/blog-data";
 
 const siteUrl = "https://docs.furmbase.com";
 
-export default function sitemap(): MetadataRoute.Sitemap {
+export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const staticRoutes: MetadataRoute.Sitemap = [
     { url: siteUrl, changeFrequency: "weekly", priority: 1 },
     { url: `${siteUrl}/tutorials`, changeFrequency: "weekly", priority: 0.8 },
     { url: `${siteUrl}/developers`, changeFrequency: "monthly", priority: 0.6 },
+    { url: `${siteUrl}/blog`, changeFrequency: "weekly", priority: 0.5 },
     { url: `${siteUrl}/search`, changeFrequency: "monthly", priority: 0.3 },
   ];
 
@@ -24,5 +26,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.5,
   }));
 
-  return [...staticRoutes, ...docRoutes, ...tutorialRoutes];
+  const blogPosts = await getBlogPosts();
+  const blogRoutes: MetadataRoute.Sitemap = blogPosts.map((post) => ({
+    url: `${siteUrl}/blog/${post.slug}`,
+    changeFrequency: "monthly",
+    priority: 0.4,
+  }));
+
+  return [...staticRoutes, ...docRoutes, ...tutorialRoutes, ...blogRoutes];
 }

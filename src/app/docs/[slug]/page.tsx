@@ -6,6 +6,7 @@ import {
   getDocHeadings,
   getAllDocSlugs,
 } from "@/lib/docs-content";
+import { DOCS_NAV } from "@/lib/docs-config";
 import { Breadcrumbs } from "@/components/docs/breadcrumbs";
 import { TableOfContents } from "@/components/docs/table-of-contents";
 import { ReadingProgress } from "@/components/docs/reading-progress";
@@ -49,6 +50,10 @@ export default async function DocSlugPage({
   const headings = getDocHeadings(page);
   const { prev, next } = getAdjacentDocPages(page.slug);
 
+  const group = DOCS_NAV.find((g) => g.title === page.group);
+  const groupHref = group?.items[0]?.href;
+  const showGroupCrumb = page.group !== page.title;
+
   return (
     <>
       <ReadingProgress />
@@ -57,7 +62,7 @@ export default async function DocSlugPage({
           <Breadcrumbs
             items={[
               { title: "Docs", href: "/docs/getting-started" },
-              { title: page.group },
+              ...(showGroupCrumb ? [{ title: page.group, href: groupHref }] : []),
               { title: page.title },
             ]}
           />

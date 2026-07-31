@@ -30,7 +30,7 @@ export function SearchPageClient({ initialQuery }: { initialQuery: string }) {
   }, [results]);
 
   return (
-    <div className="mx-auto max-w-2xl px-4 py-14 sm:px-6 lg:px-8">
+    <div className="mx-auto max-w-2xl px-4 py-14 sm:px-8 lg:px-8">
       <h1 className="text-3xl font-bold tracking-tight text-foreground sm:text-4xl">
         Search Documentation
       </h1>

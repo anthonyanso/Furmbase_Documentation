@@ -38,7 +38,7 @@ AND "Plan interested in" = "Business"`,
     h2("individual-response-actions", "Individual response actions"),
     list([
       "Star a response to flag it for follow-up",
-      "Add an internal note visible only to your team",
+      "Add an internal note for your own reference",
       "Delete a response permanently (this cannot be undone)",
       "Download a single response as a PDF summary",
     ]),

@@ -4,19 +4,20 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { DOCS_NAV } from "@/lib/docs-config";
 import { Badge } from "@/components/ui/badge";
+import { SidebarSectionSwitcher } from "@/components/docs/sidebar-nav-switcher";
 import { cn } from "@/lib/utils";
 
 export function DocsSidebarNav() {
   const pathname = usePathname();
 
   return (
-    <nav className="space-y-6">
-      {DOCS_NAV.map((group) => (
-        <div key={group.title}>
-          <p className="px-3 text-xs font-semibold uppercase tracking-wide text-muted-foreground">
+    <nav>
+      {DOCS_NAV.map((group, i) => (
+        <div key={group.title} className={cn(i > 0 && "mt-6 border-t border-sidebar-border pt-6")}>
+          <p className="px-3 text-sm text-muted-foreground">
             {group.title}
           </p>
-          <div className="mt-1.5 space-y-0.5">
+          <div className="mt-2 space-y-0.5">
             {group.items.map((item) => {
               const active = pathname === item.href;
               return (
@@ -51,8 +52,10 @@ export function DocsSidebarNav() {
 
 export function DocsSidebar() {
   return (
-    <aside className="hidden lg:block w-64 shrink-0 border-r border-sidebar-border bg-sidebar">
-      <div className="sticky top-16 max-h-[calc(100vh-4rem)] overflow-y-auto px-4 py-8 custom-scrollbar">
+    <aside className="hidden lg:block w-72 shrink-0 border-r border-sidebar-border bg-sidebar">
+      <div className="sticky top-16 max-h-[calc(100vh-4rem)] overflow-y-auto py-6 pl-4 pr-4 sm:pl-8 lg:pl-12 xl:pl-16 custom-scrollbar">
+        <SidebarSectionSwitcher />
+        <div className="my-5 h-px bg-sidebar-border" />
         <DocsSidebarNav />
       </div>
     </aside>
