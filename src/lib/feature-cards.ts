@@ -20,7 +20,7 @@ export const FEATURE_CARDS: FeatureCardData[] = [
   {
     title: "Collect Payments",
     description:
-      "Accept one-time payments inline, with fixed, custom, or calculated pricing.",
+      "Accept payments inline, with fixed pricing or a price calculated from answers.",
     href: "/docs/payment-collection",
     icon: CreditCard,
   },
@@ -52,7 +52,7 @@ export const FEATURE_CARDS: FeatureCardData[] = [
       "Multi-step workflows triggered by form activity, built visually.",
     href: "/docs/automation",
     icon: Workflow,
-    badge: "soon",
+    comingSoon: true,
   },
   {
     title: "API",
@@ -60,6 +60,6 @@ export const FEATURE_CARDS: FeatureCardData[] = [
       "A REST API for forms, responses, and workspaces, with scoped API keys.",
     href: "/docs/api",
     icon: Braces,
-    badge: "soon",
+    comingSoon: true,
   },
 ];

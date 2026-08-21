@@ -1,4 +1,3 @@
-import type { Metadata } from "next";
 import Link from "next/link";
 import { Rocket } from "lucide-react";
 import { Breadcrumbs } from "@/components/docs/breadcrumbs";
@@ -7,13 +6,19 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { SidebarSectionSwitcher } from "@/components/docs/sidebar-nav-switcher";
 import { DEVELOPER_NAV_GROUPS, DEVELOPER_SECTIONS } from "@/lib/developer-sections";
+import { buildMetadata } from "@/lib/seo";
 import { cn } from "@/lib/utils";
 
-export const metadata: Metadata = {
+// Not yet linked from primary navigation — see the header's "coming soon"
+// toast. noindex (rather than a robots.txt disallow) so Google can crawl
+// this and drop it from the index instead of leaving it stuck there.
+export const metadata = buildMetadata({
   title: "Developer Documentation",
   description:
     "Furmbase API, SDKs, authentication, webhooks, and integrations — coming soon.",
-};
+  path: "/developers",
+  noindex: true,
+});
 
 export default function DevelopersPage() {
   return (
@@ -25,7 +30,7 @@ export default function DevelopersPage() {
           <nav>
             {DEVELOPER_NAV_GROUPS.map((group, i) => (
               <div key={group.title} className={cn(i > 0 && "mt-6 border-t border-sidebar-border pt-6")}>
-                <p className="px-3 text-sm text-muted-foreground">
+                <p className="inline-block rounded-md bg-sidebar-accent/40 px-2.5 py-1 text-sm text-muted-foreground">
                   {group.title}
                 </p>
                 <div className="mt-2 space-y-0.5">

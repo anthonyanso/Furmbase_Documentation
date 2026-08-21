@@ -9,6 +9,8 @@ import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { DOCS_NAV } from "@/lib/docs-config";
 import { SECTION_NAV } from "@/lib/section-nav";
+import { comingSoonToast } from "@/lib/coming-soon";
+import { ComingSoonButton } from "@/components/layout/coming-soon-button";
 import { cn } from "@/lib/utils";
 
 export function MobileNav() {
@@ -64,6 +66,18 @@ export function MobileNav() {
               <div className="space-y-1">
                 {SECTION_NAV.map((link) => {
                   const Icon = link.icon;
+                  if (link.comingSoon) {
+                    return (
+                      <button
+                        key={link.href}
+                        onClick={() => comingSoonToast(link.title)}
+                        className="flex w-full cursor-pointer items-center gap-2.5 rounded-lg px-3 py-2 text-left text-sm font-medium text-foreground hover:bg-accent hover:text-accent-foreground"
+                      >
+                        <Icon className="size-4 text-muted-foreground" />
+                        {link.title}
+                      </button>
+                    );
+                  }
                   return (
                     <Link
                       key={link.href}
@@ -81,29 +95,40 @@ export function MobileNav() {
 
               {DOCS_NAV.map((group, i) => (
                 <div key={group.title} className={cn(i > 0 && "mt-6 border-t border-border pt-6")}>
-                  <p className="px-3 text-sm text-muted-foreground">
+                  <p className="inline-block rounded-md bg-accent/50 px-2.5 py-1 text-sm text-muted-foreground">
                     {group.title}
                   </p>
                   <div className="mt-2 space-y-0.5">
                     {group.items.map((item) => {
                       const isActive = pathname === item.href;
-                      return (
-                        <Link
-                          key={item.href}
-                          href={item.href}
-                          className={cn(
-                            "flex items-center justify-between rounded-lg px-3 py-2 text-sm hover:bg-accent hover:text-accent-foreground",
-                            isActive
-                              ? "bg-accent text-accent-foreground font-medium"
-                              : "text-foreground/80"
-                          )}
-                        >
+                      const itemClassName = cn(
+                        "flex items-center justify-between rounded-lg px-3 py-2 text-sm hover:bg-accent hover:text-accent-foreground",
+                        isActive
+                          ? "bg-accent text-accent-foreground font-medium"
+                          : "text-foreground/80"
+                      );
+                      const label = (
+                        <>
                           {item.title}
                           {item.badge && (
                             <Badge variant={item.badge === "new" ? "new" : "soon"}>
                               {item.badge === "new" ? "New" : "Soon"}
                             </Badge>
                           )}
+                        </>
+                      );
+
+                      if (item.comingSoon) {
+                        return (
+                          <ComingSoonButton key={item.href} label={item.title} className={cn(itemClassName, "w-full")}>
+                            {label}
+                          </ComingSoonButton>
+                        );
+                      }
+
+                      return (
+                        <Link key={item.href} href={item.href} className={itemClassName}>
+                          {label}
                         </Link>
                       );
                     })}

@@ -3,6 +3,7 @@
 import * as React from "react";
 import { Check, Copy } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { safeCopyToClipboard } from "@/lib/safe-clipboard";
 
 export function CodeBlock({
   language,
@@ -16,9 +17,11 @@ export function CodeBlock({
   const [copied, setCopied] = React.useState(false);
 
   async function handleCopy() {
-    await navigator.clipboard.writeText(code);
-    setCopied(true);
-    setTimeout(() => setCopied(false), 1800);
+    const ok = await safeCopyToClipboard(code);
+    if (ok) {
+      setCopied(true);
+      setTimeout(() => setCopied(false), 1800);
+    }
   }
 
   return (
@@ -40,20 +43,29 @@ export function CodeBlock({
           </span>
           <button
             onClick={handleCopy}
-            aria-label="Copy code"
+            aria-label={copied ? "Code copied" : "Copy code"}
             className={cn(
-              "flex items-center gap-1.5 rounded-md px-2 py-1 text-xs text-code-foreground/60 transition-colors hover:bg-code-foreground/10 hover:text-code-foreground"
+              "flex cursor-pointer items-center gap-1.5 rounded-md px-2 py-1 text-xs transition-colors",
+              copied
+                ? "text-primary"
+                : "text-code-foreground/60 hover:bg-code-foreground/10 hover:text-code-foreground"
             )}
           >
-            {copied ? (
-              <>
-                <Check className="size-3.5" /> Copied
-              </>
-            ) : (
-              <>
-                <Copy className="size-3.5" /> Copy
-              </>
-            )}
+            <span className="relative size-3.5">
+              <Copy
+                className={cn(
+                  "absolute inset-0 size-3.5 transition-all duration-200 ease-out",
+                  copied ? "scale-50 opacity-0" : "scale-100 opacity-100"
+                )}
+              />
+              <Check
+                className={cn(
+                  "absolute inset-0 size-3.5 transition-all duration-200 ease-out",
+                  copied ? "scale-100 opacity-100" : "scale-50 opacity-0"
+                )}
+              />
+            </span>
+            {copied ? "Copied" : "Copy"}
           </button>
         </div>
       </div>

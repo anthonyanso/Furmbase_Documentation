@@ -1,13 +1,19 @@
-import type { Metadata } from "next";
 import { Newspaper } from "lucide-react";
 import { getBlogPosts, getBlogCategories } from "@/lib/blog-data";
 import { BlogPageClient } from "@/components/blog/blog-page-client";
+import { buildMetadata } from "@/lib/seo";
 
-export const metadata: Metadata = {
+// Not yet linked from primary navigation — see the header's "coming soon"
+// toast. noindex (rather than a robots.txt disallow) so Google can still
+// crawl this and drop anything already indexed from an earlier state of the
+// site instead of leaving stale results stuck with no way to remove them.
+export const metadata = buildMetadata({
   title: "Blog",
   description:
     "Product updates, guides, and behind-the-scenes posts from the Furmbase team.",
-};
+  path: "/blog",
+  noindex: true,
+});
 
 export default async function BlogPage() {
   const [posts, categories] = await Promise.all([getBlogPosts(), getBlogCategories()]);

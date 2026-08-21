@@ -6,6 +6,7 @@ export interface NavItem {
   title: string;
   href: string;
   badge?: NavBadge;
+  comingSoon?: boolean;
 }
 
 export interface NavGroup {
@@ -50,15 +51,7 @@ export interface FeatureCardData {
   href: string;
   icon: LucideIcon;
   badge?: NavBadge;
-}
-
-export interface TutorialItem {
-  slug: string;
-  title: string;
-  description: string;
-  duration: string;
-  level: "Beginner" | "Intermediate" | "Advanced";
-  category: string;
+  comingSoon?: boolean;
 }
 
 export interface BlogPost {

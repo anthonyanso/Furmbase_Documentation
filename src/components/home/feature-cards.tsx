@@ -2,6 +2,10 @@ import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import { FEATURE_CARDS } from "@/lib/feature-cards";
 import { Badge } from "@/components/ui/badge";
+import { ComingSoonButton } from "@/components/layout/coming-soon-button";
+
+const CARD_CLASSNAME =
+  "group relative flex flex-col overflow-hidden rounded-3xl border border-border bg-card p-6 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:border-primary/30 hover:shadow-xl hover:shadow-primary/5";
 
 export function FeatureCards() {
   return (
@@ -23,12 +27,8 @@ export function FeatureCards() {
       <div className="mt-12 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
         {FEATURE_CARDS.map((card) => {
           const Icon = card.icon;
-          return (
-            <Link
-              key={card.title}
-              href={card.href}
-              className="group relative flex flex-col overflow-hidden rounded-3xl border border-border bg-card p-6 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:border-primary/30 hover:shadow-xl hover:shadow-primary/5"
-            >
+          const inner = (
+            <>
               <div
                 className="pointer-events-none absolute -right-10 -top-10 size-32 rounded-full bg-primary/10 opacity-0 blur-2xl transition-opacity duration-300 group-hover:opacity-100"
                 aria-hidden
@@ -53,9 +53,27 @@ export function FeatureCards() {
               </p>
 
               <div className="relative mt-5 flex items-center gap-1.5 text-sm font-medium text-primary opacity-0 transition-all duration-300 -translate-x-1 group-hover:translate-x-0 group-hover:opacity-100">
-                Read the docs
+                {card.comingSoon ? "Coming soon" : "Read the docs"}
                 <ArrowRight className="size-3.5" />
               </div>
+            </>
+          );
+
+          if (card.comingSoon) {
+            return (
+              <ComingSoonButton
+                key={card.title}
+                label={card.title}
+                className={`${CARD_CLASSNAME} text-left`}
+              >
+                {inner}
+              </ComingSoonButton>
+            );
+          }
+
+          return (
+            <Link key={card.title} href={card.href} className={CARD_CLASSNAME}>
+              {inner}
             </Link>
           );
         })}

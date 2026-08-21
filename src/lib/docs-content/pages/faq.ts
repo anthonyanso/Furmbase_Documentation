@@ -16,25 +16,21 @@ export const faq: DocPage = {
     p(
       "Yes, on the Business plan. See Custom Domains for the full setup guide, including the exact DNS record required."
     ),
-    h2("do-you-support-multiple-languages", "Do you support multiple languages?"),
-    p(
-      "Forms can be set to any supported language under Settings → General, which adjusts default validation messages, date formats, and number formatting for respondents. Full multi-language (translated) versions of the same form are on our roadmap."
-    ),
     h2("what-happens-if-i-exceed-my-response-limit", "What happens if I exceed my response limit?"),
     p(
       "Your forms keep collecting responses without interruption. Once you're above your plan's monthly limit, you'll be prompted to upgrade — existing responses are never deleted or hidden."
     ),
     h2("can-i-export-my-data", "Can I export my data if I stop using Furmbase?"),
     p(
-      "Yes. Every form's responses can be exported as CSV, Excel, or PDF at any time from the Responses tab — see Export Responses. There's no lock-in on your own data."
+      "Yes. Every form's responses can be exported as CSV or Excel at any time from the Responses tab, or synced straight to a Google Sheets spreadsheet in your Google Drive — see Export Responses. There's no lock-in on your own data."
     ),
     h2("is-my-data-secure", "Is my data secure?"),
     p(
-      "Form data is encrypted in transit and at rest. Payment details are handled entirely by your connected payment provider and never touch Furmbase's servers directly — see Payment Collection."
+      "Form data is encrypted in transit and at rest. Card details are never seen or stored by Furmbase — they're handled entirely by our payment processor, and only a processor token is kept — see Payment Collection."
     ),
-    h2("how-do-i-cancel", "How do I cancel my subscription?"),
+    h2("how-do-i-delete-my-account", "How do I delete my account?"),
     p(
-      "Go to Settings → Billing → Cancel Plan. Your workspace remains active on the Free plan afterward, and any forms above the Free plan's limits are paused (not deleted) until you upgrade again."
+      "Account deletion is a 30-day request, not an instant action, since it needs to account for any live forms still collecting payments and any balance you haven't withdrawn yet. See Account Deletion for the full process, including how to cancel a request."
     ),
     tip(
       "Can't find what you're looking for? Use the search bar at the top of any documentation page — press Ctrl K (or ⌘ K on Mac) to jump straight to it."

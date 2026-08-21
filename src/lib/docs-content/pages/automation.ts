@@ -4,7 +4,6 @@ import { p, h2, list, note, code } from "../blocks";
 export const automation: DocPage = {
   slug: "automation",
   group: "Integrations & Automation",
-  badge: "soon",
   title: "Automation",
   description:
     "Multi-step workflows triggered by form activity — coming soon to Furmbase.",

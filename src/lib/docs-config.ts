@@ -11,6 +11,8 @@ export const DOCS_NAV: NavGroup[] = [
       { title: "Creating Forms", href: "/docs/creating-forms" },
       { title: "Form Builder", href: "/docs/form-builder" },
       { title: "Question Types", href: "/docs/question-types" },
+      { title: "Conditional Logic", href: "/docs/conditional-logic", badge: "new" },
+      { title: "Smart Fields", href: "/docs/smart-fields", badge: "new" },
       { title: "AI Form Generator", href: "/docs/ai-form-generator", badge: "new" },
     ],
   },
@@ -37,19 +39,20 @@ export const DOCS_NAV: NavGroup[] = [
     ],
   },
   {
-    title: "Integrations & Automation",
+    title: "Integrations",
     items: [
       { title: "Integrations", href: "/docs/integrations" },
-      { title: "Automation", href: "/docs/automation", badge: "soon" },
-      { title: "API", href: "/docs/api", badge: "soon" },
+      { title: "Automation", href: "/docs/automation", comingSoon: true },
+      { title: "API", href: "/docs/api", comingSoon: true },
     ],
   },
   {
+    title: "Account",
+    items: [{ title: "Account Deletion", href: "/docs/account-deletion" }],
+  },
+  {
     title: "Resources",
-    items: [
-      { title: "Tutorials", href: "/tutorials" },
-      { title: "FAQ", href: "/docs/faq" },
-    ],
+    items: [{ title: "FAQ", href: "/docs/faq" }],
   },
 ];
 
@@ -58,6 +61,8 @@ export const DOCS_ORDER: string[] = [
   "creating-forms",
   "form-builder",
   "question-types",
+  "conditional-logic",
+  "smart-fields",
   "ai-form-generator",
   "payment-collection",
   "responses",
@@ -69,5 +74,6 @@ export const DOCS_ORDER: string[] = [
   "integrations",
   "automation",
   "api",
+  "account-deletion",
   "faq",
 ];

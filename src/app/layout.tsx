@@ -5,6 +5,10 @@ import { SearchProvider } from "@/components/search/search-provider";
 import { SiteHeader } from "@/components/layout/site-header";
 import { SiteFooter } from "@/components/layout/site-footer";
 import { BackToTop } from "@/components/layout/back-to-top";
+import { AppToaster } from "@/components/ui/app-toaster";
+import { ChatwootWidget } from "@/components/support/chatwoot";
+import { JsonLd } from "@/components/seo/json-ld";
+import { SITE, ALL_KEYWORDS, organizationSchema, websiteSchema } from "@/lib/seo";
 import "./globals.css";
 
 const inter = Inter({
@@ -19,48 +23,49 @@ const jetbrainsMono = JetBrains_Mono({
   display: "swap",
 });
 
-const siteUrl = "https://docs.furmbase.com";
-
 export const metadata: Metadata = {
-  metadataBase: new URL(siteUrl),
+  metadataBase: new URL(SITE.url),
   title: {
     default: "Furmbase Documentation",
     template: "%s · Furmbase Docs",
   },
-  description:
-    "Official documentation for Furmbase — build forms, collect payments, generate forms with AI, and analyze responses. Guides, tutorials, and API reference.",
-  keywords: [
-    "Furmbase",
-    "Furmbase documentation",
-    "form builder",
-    "AI form generator",
-    "online forms",
-    "payment forms",
-    "survey builder",
-    "developer docs",
-  ],
-  authors: [{ name: "Furmbase" }],
+  description: SITE.description,
+  keywords: ALL_KEYWORDS,
+  authors: [{ name: "Furmbase", url: "https://furmbase.com" }],
   creator: "Furmbase",
+  publisher: "Furmbase",
+  // No root-level canonical — each page sets its own via generateMetadata,
+  // so a page without custom metadata doesn't look like a duplicate of the
+  // homepage.
   icons: {
     apple: "/apple-touch-icon.png",
   },
   openGraph: {
     type: "website",
-    url: siteUrl,
-    siteName: "Furmbase Documentation",
-    title: "Furmbase Documentation",
-    description:
-      "Guides, tutorials, and API reference for building forms, collecting payments, and automating workflows with Furmbase.",
+    url: SITE.url,
+    siteName: SITE.name,
+    title: SITE.name,
+    description: SITE.description,
+    locale: SITE.locale,
+    images: [{ url: SITE.ogImage, width: 512, height: 512, alt: SITE.name, type: "image/png" }],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Furmbase Documentation",
-    description:
-      "Guides, tutorials, and API reference for building forms, collecting payments, and automating workflows with Furmbase.",
+    title: SITE.name,
+    description: SITE.description,
+    images: [SITE.ogImage],
+    creator: SITE.twitter,
   },
   robots: {
     index: true,
     follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+      "max-video-preview": -1,
+    },
   },
 };
 
@@ -93,6 +98,9 @@ export default function RootLayout({
             <div className="flex-1">{children}</div>
             <SiteFooter />
             <BackToTop />
+            <AppToaster />
+            <ChatwootWidget />
+            <JsonLd data={[organizationSchema(), websiteSchema()]} />
           </SearchProvider>
         </ThemeProvider>
       </body>

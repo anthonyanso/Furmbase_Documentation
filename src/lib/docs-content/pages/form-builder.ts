@@ -1,5 +1,5 @@
 import type { DocPage } from "@/types/docs";
-import { p, h2, h3, list, note, tip, warning, code } from "../blocks";
+import { p, h2, h3, note, tip } from "../blocks";
 
 export const formBuilder: DocPage = {
   slug: "form-builder",
@@ -24,27 +24,21 @@ export const formBuilder: DocPage = {
     ),
     h2("conditional-logic", "Conditional logic"),
     p(
-      "Logic lets you show, skip, or jump to questions based on a respondent's previous answers. Open the Logic tab on any question to add a rule."
-    ),
-    code(
-      "text",
-      `IF "How many employees?" is greater than 50
-THEN skip to "Enterprise contact details"
-ELSE continue to next question`,
-      "Example logic rule"
-    ),
-    list([
-      "Show/hide — reveal a question only if a condition is met",
-      "Skip to — jump to a specific later question",
-      "Jump to ending — end the form early, e.g. after a disqualifying answer",
-      "Calculate — adjust a hidden score field based on answers (useful for quizzes)",
-    ]),
-    warning(
-      "Logic rules are evaluated top to bottom. If two rules could both apply to the same question, the first matching rule wins — reorder rules under the Logic tab if the outcome looks wrong."
+      "Any question can be shown or hidden based on an earlier answer, and a section can route respondents to a different page — both from the ⋯ menu on that question or section. This is enough to build a form that changes while someone is filling it in, and to charge different Payment question amounts to different respondents. See Conditional Logic for the full guide."
     ),
     h2("required-fields-and-validation", "Required fields and validation"),
     p(
-      "Toggle Required on any question from the properties panel. Certain question types add automatic validation — email fields check for a valid address format, and number fields can be constrained to a min/max range."
+      "Toggle Required on any question from the properties panel. Certain question types add automatic validation — email fields check for a valid address format, and number fields can be constrained to a min/max range. Field options also let a question be required only sometimes — see Smart Fields."
+    ),
+    h2("thank-you-screen", "The thank-you screen"),
+    p(
+      "Open Form Settings → Thank you to write the default message every respondent sees after submitting, and optionally set a redirect URL to send them to your own page instead. Wrap {{Question title}} around an earlier question's title to pipe that respondent's own answer into the message."
+    ),
+    p(
+      "The message doesn't have to be the same for everyone. Add a rule — an earlier answer to check, and the message or redirect to show when it matches. Rules are checked top to bottom and the first match wins; if none match, the default message is used."
+    ),
+    tip(
+      "A rule can set a message, a redirect, or both. Only https:// addresses are accepted for redirects, so a form can never be used to send someone somewhere unsafe."
     ),
     h2("previewing", "Previewing your form"),
     p(

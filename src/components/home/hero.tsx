@@ -5,6 +5,7 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { Search, Library, Code2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { comingSoonToast } from "@/lib/coming-soon";
 
 export function Hero() {
   const router = useRouter();
@@ -62,11 +63,13 @@ export function Hero() {
               Browse Documentation
             </Link>
           </Button>
-          <Button size="lg" variant="secondary" asChild>
-            <Link href="/developers">
-              <Code2 />
-              Developer Documentation
-            </Link>
+          <Button
+            size="lg"
+            variant="secondary"
+            onClick={() => comingSoonToast("Developer Documentation")}
+          >
+            <Code2 />
+            Developer Documentation
           </Button>
         </div>
       </div>

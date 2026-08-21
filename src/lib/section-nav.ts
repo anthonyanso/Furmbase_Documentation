@@ -6,10 +6,11 @@ export interface SectionNavItem {
   href: string;
   match: string;
   icon: LucideIcon;
+  comingSoon?: boolean;
 }
 
 export const SECTION_NAV: SectionNavItem[] = [
   { title: "Documentation", href: "/docs/getting-started", match: "/docs", icon: Library },
-  { title: "Developer Docs", href: "/developers", match: "/developers", icon: Code2 },
-  { title: "Blog", href: "/blog", match: "/blog", icon: Newspaper },
+  { title: "Developer Docs", href: "/developers", match: "/developers", icon: Code2, comingSoon: true },
+  { title: "Blog", href: "/blog", match: "/blog", icon: Newspaper, comingSoon: true },
 ];

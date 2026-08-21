@@ -34,6 +34,9 @@ export const questionTypes: DocPage = {
         ["Picture Choice", "Selecting from images instead of text labels"],
       ]
     ),
+    note(
+      "On Multiple Choice, Dropdown, Linear Scale, Rating, and Multiple-Choice Grid questions, respondents can tap the option they already picked again to clear it and return the question to unanswered — useful if they selected something by accident."
+    ),
     h2("rating-and-scale", "Rating & scale"),
     table(
       ["Type", "Use it for"],
@@ -54,10 +57,10 @@ export const questionTypes: DocPage = {
     ),
     h2("payment", "Payment"),
     p(
-      "The Payment question type lets respondents pay a fixed price, a variable amount, or a price calculated from earlier answers (e.g. quantity × unit price). See Payment Collection for setup and payout details."
+      "The Payment question type lets respondents pay a fixed price, or a price calculated from earlier answers (e.g. quantity × unit price). See Payment Collection for pricing and withdrawal details."
     ),
     tip(
-      "Combine a Number or Multiple Choice question with a Payment block and a Calculate logic rule to build simple order forms — the total updates automatically as respondents answer."
+      "Combine a Number or Multiple Choice question with a Payment block set to Calculated pricing to build simple order forms — the itemised total updates automatically as respondents answer."
     ),
     h2("layout-blocks", "Layout & media blocks"),
     list([

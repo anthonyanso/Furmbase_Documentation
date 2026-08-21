@@ -2,7 +2,13 @@ import Link from "next/link";
 import { Hero } from "@/components/home/hero";
 import { FeatureCards } from "@/components/home/feature-cards";
 import { Button } from "@/components/ui/button";
-import { Library, GraduationCap } from "lucide-react";
+import { Library, ArrowRight } from "lucide-react";
+import { buildMetadata, KEYWORDS } from "@/lib/seo";
+
+export const metadata = buildMetadata({
+  path: "/",
+  keywords: [...KEYWORDS.primary, ...KEYWORDS.product],
+});
 
 export default function HomePage() {
   return (
@@ -15,11 +21,11 @@ export default function HomePage() {
           <div className="flex flex-col items-center justify-between gap-6 rounded-2xl border border-border bg-card px-6 py-10 text-center sm:flex-row sm:text-left">
             <div>
               <h2 className="text-xl font-semibold text-foreground">
-                Prefer to learn by watching?
+                Ready to start building?
               </h2>
               <p className="mt-1.5 text-sm text-muted-foreground">
-                Short, focused tutorials for building with Furmbase, from
-                your first form to advanced automation.
+                Create a free Furmbase account and publish your first form in
+                minutes — no credit card required.
               </p>
             </div>
             <div className="flex shrink-0 gap-3">
@@ -30,10 +36,10 @@ export default function HomePage() {
                 </Link>
               </Button>
               <Button asChild>
-                <Link href="/tutorials">
-                  <GraduationCap />
-                  View Tutorials
-                </Link>
+                <a href="https://furmbase.com/signup">
+                  Get Started
+                  <ArrowRight />
+                </a>
               </Button>
             </div>
           </div>

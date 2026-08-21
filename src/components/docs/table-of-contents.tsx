@@ -82,7 +82,7 @@ export function TableOfContents({ headings }: { headings: DocHeading[] }) {
                         }))
                       }
                       aria-label={isCollapsed ? "Expand section" : "Collapse section"}
-                      className="shrink-0 rounded p-1 text-muted-foreground/60 hover:text-foreground"
+                      className="shrink-0 cursor-pointer rounded p-1 text-muted-foreground/60 hover:text-foreground"
                     >
                       <ChevronDown
                         className={cn("size-3.5 transition-transform", isCollapsed && "-rotate-90")}

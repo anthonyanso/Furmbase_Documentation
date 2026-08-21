@@ -8,6 +8,7 @@ import { DocContent } from "@/components/docs/doc-content";
 import { BlogCover } from "@/components/blog/blog-cover";
 import { BlogCard } from "@/components/blog/blog-card";
 import { Badge } from "@/components/ui/badge";
+import { buildMetadata } from "@/lib/seo";
 
 interface BlogRouteParams {
   slug: string;
@@ -26,7 +27,12 @@ export async function generateMetadata({
   const { slug } = await params;
   const post = await getBlogPostBySlug(slug);
   if (!post) return {};
-  return { title: post.title, description: post.excerpt };
+  return buildMetadata({
+    title: post.title,
+    description: post.excerpt,
+    path: `/blog/${post.slug}`,
+    noindex: true,
+  });
 }
 
 export default async function BlogPostPage({

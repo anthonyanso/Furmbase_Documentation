@@ -5,6 +5,7 @@ import { usePathname } from "next/navigation";
 import { DOCS_NAV } from "@/lib/docs-config";
 import { Badge } from "@/components/ui/badge";
 import { SidebarSectionSwitcher } from "@/components/docs/sidebar-nav-switcher";
+import { ComingSoonButton } from "@/components/layout/coming-soon-button";
 import { cn } from "@/lib/utils";
 
 export function DocsSidebarNav() {
@@ -14,23 +15,20 @@ export function DocsSidebarNav() {
     <nav>
       {DOCS_NAV.map((group, i) => (
         <div key={group.title} className={cn(i > 0 && "mt-6 border-t border-sidebar-border pt-6")}>
-          <p className="px-3 text-sm text-muted-foreground">
+          <p className="inline-block rounded-md bg-sidebar-accent/40 px-2.5 py-1 text-sm text-muted-foreground">
             {group.title}
           </p>
           <div className="mt-2 space-y-0.5">
             {group.items.map((item) => {
               const active = pathname === item.href;
-              return (
-                <Link
-                  key={item.href}
-                  href={item.href}
-                  className={cn(
-                    "flex items-center justify-between gap-2 rounded-lg px-3 py-1.5 text-sm transition-colors",
-                    active
-                      ? "bg-sidebar-accent text-sidebar-accent-foreground font-medium"
-                      : "text-sidebar-foreground/90 hover:bg-sidebar-accent/60 hover:text-sidebar-accent-foreground"
-                  )}
-                >
+              const linkClassName = cn(
+                "flex items-center justify-between gap-2 rounded-lg px-3 py-1.5 text-sm transition-colors",
+                active
+                  ? "bg-sidebar-accent text-sidebar-accent-foreground font-medium"
+                  : "text-sidebar-foreground/90 hover:bg-sidebar-accent/60 hover:text-sidebar-accent-foreground"
+              );
+              const label = (
+                <>
                   <span className="truncate">{item.title}</span>
                   {item.badge && (
                     <Badge
@@ -40,6 +38,20 @@ export function DocsSidebarNav() {
                       {item.badge === "new" ? "New" : "Soon"}
                     </Badge>
                   )}
+                </>
+              );
+
+              if (item.comingSoon) {
+                return (
+                  <ComingSoonButton key={item.href} label={item.title} className={cn(linkClassName, "w-full")}>
+                    {label}
+                  </ComingSoonButton>
+                );
+              }
+
+              return (
+                <Link key={item.href} href={item.href} className={linkClassName}>
+                  {label}
                 </Link>
               );
             })}

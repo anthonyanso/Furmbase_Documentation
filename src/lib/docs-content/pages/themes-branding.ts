@@ -1,53 +1,59 @@
 import type { DocPage } from "@/types/docs";
-import { p, h2, h3, list, note, tip, code } from "../blocks";
+import { p, h2, h3, list, table, note, tip } from "../blocks";
 
 export const themesBranding: DocPage = {
   slug: "themes-branding",
   group: "Customization",
   title: "Themes & Branding",
   description:
-    "Match your forms to your brand with custom colors, fonts, logos, and layout.",
+    "Match a form to your brand with a background, brand color, logo, and typography.",
   blocks: [
     p(
-      "Every form can use a custom theme so it feels like a natural extension of your product or brand, rather than a generic form page."
+      "Every form can be styled so it feels like a natural extension of your product or brand, rather than a generic form page. Open Customize theme in the Form Builder to set it up — changes are scoped to that one form."
     ),
-    h2("workspace-themes", "Workspace themes"),
-    p(
-      "Create a theme once under Settings → Themes and apply it to any form in the workspace. Updating a shared theme updates every form using it — ideal for keeping many forms visually consistent."
-    ),
-    h3("theme-properties", "What a theme controls"),
+    h2("what-you-can-set", "What you can set"),
     list([
-      "Primary color — buttons, progress bar, and selected answers",
-      "Background — solid color, gradient, or image",
-      "Font — heading and body typography",
-      "Corner radius — sharp, rounded, or fully rounded inputs and buttons",
-      "Logo — displayed on the welcome screen and, optionally, on every page",
+      "Brand color — buttons, the progress bar, and selected answers",
+      "Background — a preset or any solid color, see below",
+      "Logo and banner image",
+      "Typography — separate font and size for the form title, description, and questions",
     ]),
-    h2("per-form-overrides", "Per-form overrides"),
+    h2("background", "Background"),
     p(
-      "Any form can override its assigned theme for one-off customization from Form Builder → Design, without affecting the shared theme or other forms using it."
+      "Backgrounds are soft, flat tones designed to stay comfortable behind a long form rather than compete with it."
+    ),
+    table(
+      ["Preset", "Character"],
+      [
+        ["Warm paper (default)", "Warm cream with a faint paper texture — deliberately not plain white"],
+        ["Cool mist", "Pale blue-grey"],
+        ["Soft sage", "Pale green"],
+        ["Soft sky", "Pale blue"],
+        ["Soft blush", "Pale pink"],
+        ["Soft lilac", "Pale purple"],
+        ["Soft sand", "Warm beige"],
+      ]
+    ),
+    p(
+      "Or choose Solid color and pick any color you like, including a dark one, from the curated swatches or the full color picker."
     ),
     tip(
-      "Use a shared workspace theme for consistency across most forms, and per-form overrides only for special campaigns — this keeps your brand consistent while still allowing flexibility."
+      "Text, option circles, and checkboxes darken automatically on a light background and stay light on a dark one, so switching backgrounds never produces unreadable text — nothing to configure manually."
     ),
-    h2("custom-css", "Custom CSS (Business plan)"),
+    h3("existing-forms", "Existing forms are unaffected"),
     p(
-      "Business plan workspaces can add custom CSS for fine-grained control beyond the theme editor — for example, custom fonts not in the built-in list, or precise spacing adjustments."
+      "If a form was set up on an earlier background option, it keeps rendering exactly as it did. Those options are simply no longer offered when styling a new form."
     ),
-    code(
-      "css",
-      `/* Example: increase spacing between questions */
-.fb-question {
-  margin-bottom: 2.5rem;
-}`,
-      "Custom CSS example"
-    ),
-    h2("welcome-and-ending-screens", "Welcome and ending screens"),
+    h2("logo-and-banner", "Logo and banner"),
     p(
-      "Both screens support a headline, supporting text, a background image or video, and a call-to-action button. The ending screen can also redirect respondents to an external URL after a short delay."
+      "Upload a logo to display on your form, and an optional banner image shown above the first question. Both are scoped to the individual form, so different forms in the same account can carry different branding."
+    ),
+    h2("typography", "Typography"),
+    p(
+      "Set the font and size independently for the form title, the description text, and the questions themselves — useful for making a title stand out from the body of the form."
     ),
     note(
-      "Custom CSS is applied on top of your theme and is scoped to the individual form — it never affects other forms in your workspace."
+      "A theme change only affects the one form you're editing. There's currently no shared, workspace-wide theme that automatically applies to every form — each form is styled on its own."
     ),
   ],
 };

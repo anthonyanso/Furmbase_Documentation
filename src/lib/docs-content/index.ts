@@ -5,6 +5,8 @@ import { gettingStarted } from "./pages/getting-started";
 import { creatingForms } from "./pages/creating-forms";
 import { formBuilder } from "./pages/form-builder";
 import { questionTypes } from "./pages/question-types";
+import { conditionalLogic } from "./pages/conditional-logic";
+import { smartFields } from "./pages/smart-fields";
 import { aiFormGenerator } from "./pages/ai-form-generator";
 import { paymentCollection } from "./pages/payment-collection";
 import { responses } from "./pages/responses";
@@ -16,6 +18,7 @@ import { exportResponses } from "./pages/export-responses";
 import { integrations } from "./pages/integrations";
 import { automation } from "./pages/automation";
 import { api } from "./pages/api";
+import { accountDeletion } from "./pages/account-deletion";
 import { faq } from "./pages/faq";
 
 const ALL_PAGES: DocPage[] = [
@@ -23,6 +26,8 @@ const ALL_PAGES: DocPage[] = [
   creatingForms,
   formBuilder,
   questionTypes,
+  conditionalLogic,
+  smartFields,
   aiFormGenerator,
   paymentCollection,
   responses,
@@ -34,6 +39,7 @@ const ALL_PAGES: DocPage[] = [
   integrations,
   automation,
   api,
+  accountDeletion,
   faq,
 ];
 

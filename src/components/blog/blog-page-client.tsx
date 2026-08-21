@@ -76,7 +76,7 @@ export function BlogPageClient({
           <button
             onClick={() => setCategory(null)}
             className={cn(
-              "flex items-center gap-1.5 rounded-full border px-3 py-1.5 text-xs font-medium transition-colors",
+              "flex cursor-pointer items-center gap-1.5 rounded-full border px-3 py-1.5 text-xs font-medium transition-colors",
               category === null
                 ? "border-primary/30 bg-primary/10 text-primary"
                 : "border-border text-muted-foreground hover:text-foreground"
@@ -92,7 +92,7 @@ export function BlogPageClient({
                 key={cat}
                 onClick={() => setCategory(cat)}
                 className={cn(
-                  "flex items-center gap-1.5 rounded-full border px-3 py-1.5 text-xs font-medium transition-colors",
+                  "flex cursor-pointer items-center gap-1.5 rounded-full border px-3 py-1.5 text-xs font-medium transition-colors",
                   category === cat
                     ? "border-primary/30 bg-primary/10 text-primary"
                     : "border-border text-muted-foreground hover:text-foreground"

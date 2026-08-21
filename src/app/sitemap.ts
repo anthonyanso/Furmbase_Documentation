@@ -1,37 +1,25 @@
 import type { MetadataRoute } from "next";
 import { getAllDocSlugs } from "@/lib/docs-content";
-import { TUTORIALS } from "@/lib/tutorials-data";
-import { getBlogPosts } from "@/lib/blog-data";
+import { absoluteUrl } from "@/lib/seo";
 
-const siteUrl = "https://docs.furmbase.com";
+export const revalidate = 3600;
 
-export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
+// Only indexable pages belong here. /blog, /developers, and /search all
+// carry noindex (see their own metadata), so they're deliberately excluded —
+// a sitemap listing a noindex URL is a contradiction search engines flag.
+export default function sitemap(): MetadataRoute.Sitemap {
+  const now = new Date();
+
   const staticRoutes: MetadataRoute.Sitemap = [
-    { url: siteUrl, changeFrequency: "weekly", priority: 1 },
-    { url: `${siteUrl}/tutorials`, changeFrequency: "weekly", priority: 0.8 },
-    { url: `${siteUrl}/developers`, changeFrequency: "monthly", priority: 0.6 },
-    { url: `${siteUrl}/blog`, changeFrequency: "weekly", priority: 0.5 },
-    { url: `${siteUrl}/search`, changeFrequency: "monthly", priority: 0.3 },
+    { url: absoluteUrl("/"), lastModified: now, changeFrequency: "weekly", priority: 1 },
   ];
 
   const docRoutes: MetadataRoute.Sitemap = getAllDocSlugs().map((slug) => ({
-    url: `${siteUrl}/docs/${slug}`,
+    url: absoluteUrl(`/docs/${slug}`),
+    lastModified: now,
     changeFrequency: "weekly",
     priority: 0.7,
   }));
 
-  const tutorialRoutes: MetadataRoute.Sitemap = TUTORIALS.map((tutorial) => ({
-    url: `${siteUrl}/tutorials/${tutorial.slug}`,
-    changeFrequency: "monthly",
-    priority: 0.5,
-  }));
-
-  const blogPosts = await getBlogPosts();
-  const blogRoutes: MetadataRoute.Sitemap = blogPosts.map((post) => ({
-    url: `${siteUrl}/blog/${post.slug}`,
-    changeFrequency: "monthly",
-    priority: 0.4,
-  }));
-
-  return [...staticRoutes, ...docRoutes, ...tutorialRoutes, ...blogRoutes];
+  return [...staticRoutes, ...docRoutes];
 }

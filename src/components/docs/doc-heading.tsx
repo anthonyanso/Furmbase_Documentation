@@ -3,6 +3,7 @@
 import * as React from "react";
 import { Link as LinkIcon, Check } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { safeCopyToClipboard } from "@/lib/safe-clipboard";
 
 export function DocHeading({
   id,
@@ -16,11 +17,13 @@ export function DocHeading({
   const [copied, setCopied] = React.useState(false);
   const Tag = level === 2 ? "h2" : "h3";
 
-  function handleCopy() {
+  async function handleCopy() {
     const url = `${window.location.origin}${window.location.pathname}#${id}`;
-    navigator.clipboard.writeText(url);
-    setCopied(true);
-    setTimeout(() => setCopied(false), 1800);
+    const ok = await safeCopyToClipboard(url);
+    if (ok) {
+      setCopied(true);
+      setTimeout(() => setCopied(false), 1800);
+    }
   }
 
   return (
@@ -34,17 +37,37 @@ export function DocHeading({
       )}
     >
       <span>{children}</span>
-      <button
-        onClick={handleCopy}
-        aria-label="Copy link to heading"
-        className="opacity-0 transition-opacity group-hover:opacity-100 text-muted-foreground hover:text-primary"
-      >
-        {copied ? (
-          <Check className="size-4" />
-        ) : (
-          <LinkIcon className="size-4" />
-        )}
-      </button>
+      <span className="relative inline-flex items-center">
+        <button
+          onClick={handleCopy}
+          aria-label={copied ? "Link copied" : "Copy link to heading"}
+          className={cn(
+            "relative flex size-6 shrink-0 cursor-pointer items-center justify-center rounded-md text-muted-foreground transition-opacity hover:text-primary",
+            copied ? "opacity-100" : "opacity-0 group-hover:opacity-100"
+          )}
+        >
+          <LinkIcon
+            className={cn(
+              "absolute size-4 transition-all duration-200 ease-out",
+              copied ? "scale-50 opacity-0" : "scale-100 opacity-100"
+            )}
+          />
+          <Check
+            className={cn(
+              "absolute size-4 text-primary transition-all duration-200 ease-out",
+              copied ? "scale-100 opacity-100" : "scale-50 opacity-0"
+            )}
+          />
+        </button>
+        <span
+          className={cn(
+            "pointer-events-none absolute left-full ml-1.5 whitespace-nowrap rounded-md bg-foreground px-1.5 py-0.5 text-[10px] font-medium text-background transition-all duration-200 ease-out",
+            copied ? "translate-x-0 opacity-100" : "-translate-x-1 opacity-0"
+          )}
+        >
+          Copied!
+        </span>
+      </span>
     </Tag>
   );
 }

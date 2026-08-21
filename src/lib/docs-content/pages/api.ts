@@ -4,7 +4,6 @@ import { p, h2, list, note, code } from "../blocks";
 export const api: DocPage = {
   slug: "api",
   group: "Integrations & Automation",
-  badge: "soon",
   title: "API",
   description:
     "A REST API for forms, responses, and workspaces — coming soon to Furmbase.",

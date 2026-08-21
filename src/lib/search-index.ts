@@ -1,7 +1,5 @@
 import type { SearchDoc } from "@/types/docs";
 import { DOCS_PAGES } from "@/lib/docs-content";
-import { TUTORIALS } from "@/lib/tutorials-data";
-import { BLOG_POSTS } from "@/lib/blog-data";
 
 function buildDocsIndex(): SearchDoc[] {
   return Object.values(DOCS_PAGES).map((page) => ({
@@ -12,52 +10,7 @@ function buildDocsIndex(): SearchDoc[] {
   }));
 }
 
-function buildTutorialsIndex(): SearchDoc[] {
-  return TUTORIALS.map((tutorial) => ({
-    title: tutorial.title,
-    description: tutorial.description,
-    href: `/tutorials/${tutorial.slug}`,
-    group: `Tutorials · ${tutorial.category}`,
-  }));
-}
-
-function buildBlogIndex(): SearchDoc[] {
-  return BLOG_POSTS.map((post) => ({
-    title: post.title,
-    description: post.excerpt,
-    href: `/blog/${post.slug}`,
-    group: `Blog · ${post.category}`,
-  }));
-}
-
-const STATIC_PAGES: SearchDoc[] = [
-  {
-    title: "Tutorials",
-    description: "Short, focused walkthroughs for building with Furmbase.",
-    href: "/tutorials",
-    group: "Resources",
-  },
-  {
-    title: "Developer Documentation",
-    description: "API, SDKs, authentication, and webhooks — coming soon.",
-    href: "/developers",
-    group: "Resources",
-    keywords: ["api", "sdk", "webhook", "developer"],
-  },
-  {
-    title: "Blog",
-    description: "Product updates, guides, and behind-the-scenes posts from the Furmbase team.",
-    href: "/blog",
-    group: "Resources",
-  },
-];
-
-export const SEARCH_INDEX: SearchDoc[] = [
-  ...buildDocsIndex(),
-  ...buildTutorialsIndex(),
-  ...buildBlogIndex(),
-  ...STATIC_PAGES,
-];
+export const SEARCH_INDEX: SearchDoc[] = [...buildDocsIndex()];
 
 // In-memory scoring today; swap the body of this function for a call to
 // Algolia (or another hosted search provider) once the docs corpus grows

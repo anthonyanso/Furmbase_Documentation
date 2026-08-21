@@ -35,7 +35,7 @@ export function SearchPageClient({ initialQuery }: { initialQuery: string }) {
         Search Documentation
       </h1>
       <p className="mt-2 text-muted-foreground">
-        Search across guides, tutorials, and reference pages.
+        Search across guides and reference pages.
       </p>
 
       <div className="relative mt-6">
