@@ -3,7 +3,7 @@
 import * as React from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { Search, ArrowRight } from "lucide-react";
+import { Search, ArrowRight, Github } from "lucide-react";
 import { Logo } from "@/components/layout/logo";
 import { MobileNav } from "@/components/layout/mobile-nav";
 import { ThemeToggle } from "@/components/theme/theme-toggle";
@@ -11,6 +11,7 @@ import { Button } from "@/components/ui/button";
 import { Kbd } from "@/components/ui/kbd";
 import { useSearchDialog } from "@/components/search/search-provider";
 import { comingSoonToast } from "@/lib/coming-soon";
+import { GITHUB_REPO_URL } from "@/lib/github";
 import { cn } from "@/lib/utils";
 
 const NAV_LINKS = [
@@ -89,6 +90,17 @@ export function SiteHeader() {
         >
           <Search className="size-4.5" />
         </button>
+
+        <a
+          href={GITHUB_REPO_URL}
+          target="_blank"
+          rel="noopener noreferrer"
+          title="View source on GitHub"
+          aria-label="Furmbase Documentation on GitHub"
+          className="hidden sm:inline-flex h-9 w-9 cursor-pointer items-center justify-center rounded-lg text-muted-foreground transition-colors hover:bg-accent hover:text-accent-foreground"
+        >
+          <Github className="size-4.5" />
+        </a>
 
         <ThemeToggle />
 

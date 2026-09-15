@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
+import { Pencil, ArrowUpRight } from "lucide-react";
 import {
   getDocPage,
   getAdjacentDocPages,
@@ -16,6 +17,7 @@ import { PrevNextNav } from "@/components/docs/prev-next-nav";
 import { Badge } from "@/components/ui/badge";
 import { JsonLd } from "@/components/seo/json-ld";
 import { buildMetadata, breadcrumbSchema, faqSchema } from "@/lib/seo";
+import { GITHUB_REPO_URL } from "@/lib/github";
 
 interface DocRouteParams {
   slug: string;
@@ -107,6 +109,20 @@ export default async function DocSlugPage({
 
           <div className="mt-10">
             <DocContent blocks={page.blocks} />
+          </div>
+
+          <div className="mt-10 flex items-center gap-1.5 border-t border-border pt-6 text-sm text-muted-foreground">
+            <Pencil className="size-3.5" />
+            <span>Want to edit this page?</span>
+            <a
+              href={GITHUB_REPO_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="group inline-flex items-center gap-1 font-medium text-primary hover:underline"
+            >
+              Edit on GitHub
+              <ArrowUpRight className="size-3.5 transition-transform duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+            </a>
           </div>
 
           <PrevNextNav prev={prev} next={next} />

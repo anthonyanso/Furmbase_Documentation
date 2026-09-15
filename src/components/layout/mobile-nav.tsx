@@ -4,13 +4,14 @@ import * as React from "react";
 import { createPortal } from "react-dom";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { Menu, X } from "lucide-react";
+import { Menu, X, Github } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { DOCS_NAV } from "@/lib/docs-config";
 import { SECTION_NAV } from "@/lib/section-nav";
 import { comingSoonToast } from "@/lib/coming-soon";
 import { ComingSoonButton } from "@/components/layout/coming-soon-button";
+import { GITHUB_REPO_URL } from "@/lib/github";
 import { cn } from "@/lib/utils";
 
 export function MobileNav() {
@@ -135,6 +136,18 @@ export function MobileNav() {
                   </div>
                 </div>
               ))}
+
+              <div className="h-px bg-border" />
+
+              <a
+                href={GITHUB_REPO_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center gap-2.5 rounded-lg px-3 py-2 text-sm font-medium text-foreground hover:bg-accent hover:text-accent-foreground"
+              >
+                <Github className="size-4 text-muted-foreground" />
+                View source on GitHub
+              </a>
             </nav>
           </div>
         </div>,

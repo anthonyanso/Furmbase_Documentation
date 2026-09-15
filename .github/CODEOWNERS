@@ -1,0 +1,4 @@
+# Every pull request requires a review from the repo owner before it can be
+# merged — pairs with the "Require review from Code Owners" branch protection
+# rule on main. See CONTRIBUTING.md for the full workflow.
+* @anthonyanso
