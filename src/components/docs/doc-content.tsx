@@ -105,9 +105,22 @@ export function DocContent({ blocks }: { blocks: DocBlock[] }) {
               </div>
             );
 
-          case "image":
+          case "image": {
+            // Resizing an image in the admin editor sets this — a percentage
+            // of the content column, not the intrinsic file size — so a
+            // deliberately-shrunk image actually renders smaller here
+            // instead of always stretching full width.
+            const widthPercent = block.displayWidth
+              ? Math.min(100, Math.max(10, block.displayWidth))
+              : 100;
+            const approxPx = Math.round(720 * (widthPercent / 100));
+
             return (
-              <figure key={i} className="my-6">
+              <figure
+                key={i}
+                className="my-6 mx-auto"
+                style={{ width: `${widthPercent}%` }}
+              >
                 {block.width && block.height ? (
                   // Real dimensions (captured at upload time) let next/image
                   // serve a correctly-sized, modern-format asset and reserve
@@ -119,15 +132,15 @@ export function DocContent({ blocks }: { blocks: DocBlock[] }) {
                     alt={block.alt}
                     width={block.width}
                     height={block.height}
-                    sizes="(min-width: 768px) 720px, 100vw"
-                    className="mx-auto h-auto w-full max-h-[80vh] rounded-xl border border-border object-contain"
+                    sizes={`(min-width: 768px) ${approxPx}px, ${widthPercent}vw`}
+                    className="h-auto w-full max-h-[80vh] rounded-xl border border-border object-contain"
                   />
                 ) : (
                   <img
                     src={block.src}
                     alt={block.alt}
                     loading="lazy"
-                    className="mx-auto h-auto w-full max-h-[80vh] rounded-xl border border-border object-contain"
+                    className="h-auto w-full max-h-[80vh] rounded-xl border border-border object-contain"
                   />
                 )}
                 {block.caption && (
@@ -137,6 +150,7 @@ export function DocContent({ blocks }: { blocks: DocBlock[] }) {
                 )}
               </figure>
             );
+          }
 
           case "video":
             return (

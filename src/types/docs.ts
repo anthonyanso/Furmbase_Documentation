@@ -40,6 +40,10 @@ export type DocBlock =
        *  layout shift; falls back to an unsized <img> when absent. */
       width?: number;
       height?: number;
+      /** How wide to render the image, as a percentage (1-100) of the post's
+       *  content column — set by the admin dragging a resize handle in the
+       *  editor. Absent/100 renders full width, same as before this existed. */
+      displayWidth?: number;
     }
   | { type: "video"; src: string; poster?: string; caption?: string };
 
