@@ -8,6 +8,7 @@ import {
   Compass,
   Building2,
   Lightbulb,
+  Tag,
   type LucideIcon,
 } from "lucide-react";
 import type { BlogPost } from "@/types/docs";
@@ -15,12 +16,15 @@ import { BlogCard } from "@/components/blog/blog-card";
 import { Input } from "@/components/ui/input";
 import { cn } from "@/lib/utils";
 
+// Known categories get a specific icon; anything the admin panel adds later
+// (a free-text field) falls back to a generic tag icon rather than nothing.
 const CATEGORY_ICONS: Record<string, LucideIcon> = {
   "Product Updates": Megaphone,
   Guides: Compass,
   Company: Building2,
   Tips: Lightbulb,
 };
+const DEFAULT_CATEGORY_ICON = Tag;
 
 export function BlogPageClient({
   posts,
@@ -46,8 +50,10 @@ export function BlogPageClient({
       .sort((a, b) => (a.date < b.date ? 1 : -1));
   }, [posts, query, category]);
 
-  const featured = filtered.slice(0, 2);
-  const rest = filtered.slice(2);
+  // Featured is an explicit choice made per post (in the admin panel), not
+  // just "whichever came first" — so it's a filter, not a slice.
+  const featured = filtered.filter((post) => post.featured);
+  const rest = filtered.filter((post) => !post.featured);
 
   return (
     <div className="mx-auto max-w-[1400px] px-4 py-14 sm:px-8 lg:px-12 xl:px-16">
@@ -86,7 +92,7 @@ export function BlogPageClient({
             All Articles
           </button>
           {categories.map((cat) => {
-            const Icon = CATEGORY_ICONS[cat];
+            const Icon = CATEGORY_ICONS[cat] ?? DEFAULT_CATEGORY_ICON;
             return (
               <button
                 key={cat}
@@ -120,7 +126,7 @@ export function BlogPageClient({
               )}
             >
               {featured.map((post, i) => (
-                <BlogCard key={post.slug} post={post} index={i} featured />
+                <BlogCard key={post.slug} post={post} index={i} featured priority={i === 0} />
               ))}
             </div>
           )}

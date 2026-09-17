@@ -1,3 +1,4 @@
+import Image from "next/image";
 import type { DocBlock } from "@/types/docs";
 import { DocHeading } from "@/components/docs/doc-heading";
 import { Callout } from "@/components/docs/callout";
@@ -107,12 +108,28 @@ export function DocContent({ blocks }: { blocks: DocBlock[] }) {
           case "image":
             return (
               <figure key={i} className="my-6">
-                <img
-                  src={block.src}
-                  alt={block.alt}
-                  loading="lazy"
-                  className="w-full rounded-xl border border-border"
-                />
+                {block.width && block.height ? (
+                  // Real dimensions (captured at upload time) let next/image
+                  // serve a correctly-sized, modern-format asset and reserve
+                  // the right box up front — no layout shift, and portrait
+                  // vs. landscape both lay out at their true aspect ratio
+                  // instead of being stretched or cropped.
+                  <Image
+                    src={block.src}
+                    alt={block.alt}
+                    width={block.width}
+                    height={block.height}
+                    sizes="(min-width: 768px) 720px, 100vw"
+                    className="mx-auto h-auto w-full max-h-[80vh] rounded-xl border border-border object-contain"
+                  />
+                ) : (
+                  <img
+                    src={block.src}
+                    alt={block.alt}
+                    loading="lazy"
+                    className="mx-auto h-auto w-full max-h-[80vh] rounded-xl border border-border object-contain"
+                  />
+                )}
                 {block.caption && (
                   <figcaption className="mt-2 text-center text-sm text-muted-foreground">
                     {block.caption}

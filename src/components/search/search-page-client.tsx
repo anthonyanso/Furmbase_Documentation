@@ -9,10 +9,16 @@ import { Kbd } from "@/components/ui/kbd";
 import { searchDocs } from "@/lib/search-index";
 import type { SearchDoc } from "@/types/docs";
 
-export function SearchPageClient({ initialQuery }: { initialQuery: string }) {
+export function SearchPageClient({
+  initialQuery,
+  extraDocs = [],
+}: {
+  initialQuery: string;
+  extraDocs?: SearchDoc[];
+}) {
   const router = useRouter();
   const [query, setQuery] = React.useState(initialQuery);
-  const results = React.useMemo(() => searchDocs(query, 30), [query]);
+  const results = React.useMemo(() => searchDocs(query, 30, extraDocs), [query, extraDocs]);
 
   React.useEffect(() => {
     const url = query ? `/search?q=${encodeURIComponent(query)}` : "/search";

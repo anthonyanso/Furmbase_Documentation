@@ -14,6 +14,13 @@ interface BlogRouteParams {
   slug: string;
 }
 
+// Posts are written in a separate admin panel, not deployed alongside this
+// site — revalidate periodically so a newly published/edited post shows up
+// here without needing a full redeploy. New slugs not seen at build time
+// are still rendered on demand (dynamicParams defaults to true) and cached
+// from then on under this same revalidate window.
+export const revalidate = 60;
+
 export async function generateStaticParams(): Promise<BlogRouteParams[]> {
   const slugs = await getAllBlogSlugs();
   return slugs.map((slug) => ({ slug }));
@@ -31,7 +38,6 @@ export async function generateMetadata({
     title: post.title,
     description: post.excerpt,
     path: `/blog/${post.slug}`,
-    noindex: true,
   });
 }
 
@@ -75,7 +81,13 @@ export default async function BlogPostPage({
       <p className="mt-4 text-lg text-muted-foreground">{post.excerpt}</p>
 
       <div className="mt-8">
-        <BlogCover index={index} className="aspect-video" />
+        <BlogCover
+          index={index}
+          imageUrl={post.coverImageUrl}
+          alt={post.title}
+          className="aspect-video"
+          priority
+        />
       </div>
 
       <div className="mt-10">

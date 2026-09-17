@@ -3,16 +3,16 @@ import { getBlogPosts, getBlogCategories } from "@/lib/blog-data";
 import { BlogPageClient } from "@/components/blog/blog-page-client";
 import { buildMetadata } from "@/lib/seo";
 
-// Not yet linked from primary navigation — see the header's "coming soon"
-// toast. noindex (rather than a robots.txt disallow) so Google can still
-// crawl this and drop anything already indexed from an earlier state of the
-// site instead of leaving stale results stuck with no way to remove them.
+// Posts are written in a separate admin panel, not deployed alongside this
+// site — revalidate periodically so a newly published/edited post shows up
+// here without needing a full redeploy.
+export const revalidate = 60;
+
 export const metadata = buildMetadata({
   title: "Blog",
   description:
     "Product updates, guides, and behind-the-scenes posts from the Furmbase team.",
   path: "/blog",
-  noindex: true,
 });
 
 export default async function BlogPage() {

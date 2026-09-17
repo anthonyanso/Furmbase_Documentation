@@ -16,7 +16,10 @@ export interface NavGroup {
 
 export type DocBlock =
   | { type: "paragraph"; content: string }
-  | { type: "heading"; level: 2 | 3; id: string; title: string }
+  // h1 is reserved for the page/post title itself (rendered separately, not
+  // as a block) so a page never ends up with two h1s — writers choosing
+  // "Heading 1" in the editor should map to level 2, the largest in-body size.
+  | { type: "heading"; level: 2 | 3 | 4 | 5 | 6; id: string; title: string }
   | { type: "list"; ordered?: boolean; items: string[] }
   | {
       type: "callout";
@@ -27,7 +30,17 @@ export type DocBlock =
   | { type: "code"; title?: string; language: string; code: string }
   | { type: "steps"; items: { title: string; content: string }[] }
   | { type: "table"; headers: string[]; rows: string[][] }
-  | { type: "image"; src: string; alt: string; caption?: string }
+  | {
+      type: "image";
+      src: string;
+      alt: string;
+      caption?: string;
+      /** Intrinsic pixel size, captured from the file at upload time. Drives
+       *  correct layout for both landscape and portrait images and avoids
+       *  layout shift; falls back to an unsized <img> when absent. */
+      width?: number;
+      height?: number;
+    }
   | { type: "video"; src: string; poster?: string; caption?: string };
 
 export interface DocPage {
@@ -42,7 +55,7 @@ export interface DocPage {
 export interface DocHeading {
   id: string;
   title: string;
-  level: 2 | 3;
+  level: 2 | 3 | 4 | 5 | 6;
 }
 
 export interface FeatureCardData {
@@ -62,6 +75,10 @@ export interface BlogPost {
   date: string;
   readTime: string;
   blocks: DocBlock[];
+  /** Shows in the larger "featured" row at the top of /blog instead of the regular grid — set per post by whoever writes it. */
+  featured: boolean;
+  /** Real cover photo. When absent, the site falls back to its own generated gradient cover. */
+  coverImageUrl?: string;
 }
 
 export interface SearchDoc {

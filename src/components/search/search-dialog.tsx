@@ -4,7 +4,9 @@ import * as React from "react";
 import { useRouter } from "next/navigation";
 import { Command } from "cmdk";
 import { FileText, Search, ArrowRight } from "lucide-react";
-import { SEARCH_INDEX } from "@/lib/search-index";
+import { SEARCH_INDEX, buildBlogIndex } from "@/lib/search-index";
+import { getBlogPosts } from "@/lib/blog-data";
+import type { SearchDoc } from "@/types/docs";
 import { cn } from "@/lib/utils";
 
 interface SearchDialogProps {
@@ -15,10 +17,18 @@ interface SearchDialogProps {
 export function SearchDialog({ open, onOpenChange }: SearchDialogProps) {
   const router = useRouter();
   const [query, setQuery] = React.useState("");
+  const [blogDocs, setBlogDocs] = React.useState<SearchDoc[]>([]);
 
   React.useEffect(() => {
     if (!open) setQuery("");
   }, [open]);
+
+  // Fetched lazily on first open (not at module load) since it's a network
+  // call to Supabase; cached in state so reopening the palette is instant.
+  React.useEffect(() => {
+    if (!open || blogDocs.length > 0) return;
+    getBlogPosts().then((posts) => setBlogDocs(buildBlogIndex(posts)));
+  }, [open, blogDocs.length]);
 
   React.useEffect(() => {
     if (!open) return;
@@ -38,7 +48,7 @@ export function SearchDialog({ open, onOpenChange }: SearchDialogProps) {
 
   if (!open) return null;
 
-  const grouped = SEARCH_INDEX.reduce<Record<string, typeof SEARCH_INDEX>>(
+  const grouped = [...SEARCH_INDEX, ...blogDocs].reduce<Record<string, SearchDoc[]>>(
     (acc, doc) => {
       acc[doc.group] = acc[doc.group] ?? [];
       acc[doc.group].push(doc);

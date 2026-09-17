@@ -17,7 +17,7 @@ import { cn } from "@/lib/utils";
 const NAV_LINKS = [
   { title: "Documentation", href: "/docs/getting-started", match: "/docs" },
   { title: "Developer Docs", href: "/developers", match: "/developers", comingSoon: true },
-  { title: "Blog", href: "/blog", match: "/blog", comingSoon: true },
+  { title: "Blog", href: "/blog", match: "/blog" },
 ];
 
 export function SiteHeader() {

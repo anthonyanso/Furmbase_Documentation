@@ -5,17 +5,25 @@ import { Link as LinkIcon, Check } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { safeCopyToClipboard } from "@/lib/safe-clipboard";
 
+const SIZE_BY_LEVEL: Record<2 | 3 | 4 | 5 | 6, string> = {
+  2: "mt-12 mb-4 text-2xl first:mt-0",
+  3: "mt-8 mb-3 text-lg",
+  4: "mt-6 mb-2.5 text-base",
+  5: "mt-5 mb-2 text-sm",
+  6: "mt-5 mb-2 text-sm uppercase tracking-wide",
+};
+
 export function DocHeading({
   id,
   level,
   children,
 }: {
   id: string;
-  level: 2 | 3;
+  level: 2 | 3 | 4 | 5 | 6;
   children: React.ReactNode;
 }) {
   const [copied, setCopied] = React.useState(false);
-  const Tag = level === 2 ? "h2" : "h3";
+  const Tag = `h${level}` as const;
 
   async function handleCopy() {
     const url = `${window.location.origin}${window.location.pathname}#${id}`;
@@ -31,9 +39,7 @@ export function DocHeading({
       id={id}
       className={cn(
         "group flex items-center gap-2 font-semibold tracking-tight text-foreground",
-        level === 2
-          ? "mt-12 mb-4 text-2xl first:mt-0"
-          : "mt-8 mb-3 text-lg"
+        SIZE_BY_LEVEL[level]
       )}
     >
       <span>{children}</span>

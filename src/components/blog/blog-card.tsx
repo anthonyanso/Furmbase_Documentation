@@ -9,17 +9,25 @@ export function BlogCard({
   post,
   index,
   featured = false,
+  priority = false,
 }: {
   post: BlogPost;
   index: number;
   featured?: boolean;
+  priority?: boolean;
 }) {
   return (
     <Link
       href={`/blog/${post.slug}`}
       className="group flex flex-col overflow-hidden rounded-2xl border border-border bg-card transition-all duration-200 hover:-translate-y-0.5 hover:border-ring/40 hover:shadow-lg"
     >
-      <BlogCover index={index} className={featured ? "aspect-[16/9]" : "aspect-[16/10]"} />
+      <BlogCover
+        index={index}
+        imageUrl={post.coverImageUrl}
+        alt={post.title}
+        className={featured ? "aspect-[16/9]" : "aspect-[16/10]"}
+        priority={priority}
+      />
       <div className="flex flex-1 flex-col p-5">
         <div className="flex items-center gap-2 text-xs">
           <span className="font-medium text-primary">{post.category}</span>
