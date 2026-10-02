@@ -14,7 +14,8 @@ export const SITE = {
   description:
     "Official documentation for Furmbase — build forms, collect payments, generate forms with AI, and analyze responses. Guides and API reference.",
   ogImage: "/android-chrome-512x512.png",
-  twitter: "@furmbase",
+  // No X (Twitter) handle: FurmBase has no X account yet. When it does, add
+  // twitter: "@handle" back here and as site/creator in the twitter metadata.
   locale: "en_US",
 } as const;
 
@@ -85,7 +86,6 @@ export function buildMetadata(opts: BuildMetadataOptions = {}): Metadata {
       title,
       description,
       images: [SITE.ogImage],
-      creator: SITE.twitter,
     },
     robots: opts.noindex
       ? {

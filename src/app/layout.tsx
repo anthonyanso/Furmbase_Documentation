@@ -54,7 +54,6 @@ export const metadata: Metadata = {
     title: SITE.name,
     description: SITE.description,
     images: [SITE.ogImage],
-    creator: SITE.twitter,
   },
   robots: {
     index: true,

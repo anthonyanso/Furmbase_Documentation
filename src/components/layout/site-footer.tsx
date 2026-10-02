@@ -25,14 +25,6 @@ function LinkedInIcon({ className }: { className?: string }) {
   );
 }
 
-function XIcon({ className }: { className?: string }) {
-  return (
-    <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" className={className}>
-      <path d="M18.901 1.153h3.68l-8.04 9.19L24 22.846h-7.406l-5.8-7.584-6.638 7.584H.474l8.6-9.83L0 1.154h7.594l5.243 6.932zM17.61 20.644h2.039L6.486 3.24H4.298z" />
-    </svg>
-  );
-}
-
 function GitHubIcon({ className }: { className?: string }) {
   return (
     <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" className={className}>
@@ -44,8 +36,7 @@ function GitHubIcon({ className }: { className?: string }) {
 const SOCIAL_LINKS = [
   { label: "View Source on GitHub", href: GITHUB_REPO_URL, icon: GitHubIcon },
   { label: "Furmbase on Instagram", href: "https://www.instagram.com/furm.base/", icon: InstagramIcon },
-  { label: "Furmbase on LinkedIn", href: "https://www.linkedin.com/in/anthonyanso/", icon: LinkedInIcon },
-  { label: "Furmbase on X", href: "https://x.com/anthony__anso", icon: XIcon },
+  { label: "Furmbase on LinkedIn", href: "https://www.linkedin.com/company/furmbase/", icon: LinkedInIcon },
 ] as const;
 
 const PRODUCT_HUNT_URL =
